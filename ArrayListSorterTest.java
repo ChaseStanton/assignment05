@@ -17,14 +17,23 @@ private ArrayList<Integer> intList;
 		intList.add(20);
 		intList.add(0);
 		intList.add(7);
+		intList.add(100);
+		intList.add(50);
+		intList.add(75);
+		intList.add(-50);
+		intList.add(22);
+		intList.add(30);
+		intList.add(-3);
 	}
 
 	@Test
 	void testMergeSort() {
 		ArrayListSorter.mergesort(intList);
-		assertEquals(-13, intList.get(0));
-		assertEquals(1, intList.get(2));
-		assertEquals(20, intList.get(4));
+		assertEquals(-50, intList.get(0));
+		assertEquals(-3, intList.get(2));
+		assertEquals(1, intList.get(4));
+		assertEquals(1, intList.get(4));
+
 	}
 
 }
