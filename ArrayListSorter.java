@@ -159,6 +159,8 @@ public class ArrayListSorter {
     }
 
     public static ArrayList<Integer> generateAscending(int size) {
+    	if(size <= 0)
+    		throw new IllegalArgumentException("The size must be greater than 0");
         ArrayList<Integer> ascendingList = new ArrayList<>();
 
         for (int i = 1; i <= size; i++) {
@@ -169,6 +171,8 @@ public class ArrayListSorter {
     }
 
     public static ArrayList<Integer> generatePermuted(int size) {
+    	if(size <= 0)
+    		throw new IllegalArgumentException("The size must be greater than 0");
         ArrayList<Integer> permutedList = new ArrayList<>();
 
         for (int i = 1; i <= size; i++) {
@@ -182,6 +186,8 @@ public class ArrayListSorter {
     }
 
     public static ArrayList<Integer> generateDescending(int size) {
+    	if(size <= 0)
+    		throw new IllegalArgumentException("The size must be greater than 0");
         ArrayList<Integer> descendingList = new ArrayList<>();
 
         for (int i = size; i >= 1; i--) {
