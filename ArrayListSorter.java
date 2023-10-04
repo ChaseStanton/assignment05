@@ -90,6 +90,14 @@ public class ArrayListSorter <T extends Comparable<? super T>>{
         }
 
     }
+    /**
+     * This method 
+     * @param list
+     * @param low
+     * @param high
+     * @param pivotChoice
+     * @return
+     */
     private int partition(ArrayList<T> list, int low, int high, int pivotChoice) {
     	int pivotIndex = choosePivot(pivotChoice, low, high);
     	T pivot = list.get(pivotIndex);
