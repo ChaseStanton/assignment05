@@ -1,8 +1,10 @@
 package assign05;
 
 import java.util.ArrayList;
+import java.util.Random;
 
-public class ArrayListSorter<T extends Comparable<? super T>> {
+
+public class ArrayListSorter {
 	private static int insertionSortThreshold = 10;
 
 	public static <T extends Comparable<? super T>> void mergesort(ArrayList<T> list) {
@@ -63,6 +65,26 @@ public class ArrayListSorter<T extends Comparable<? super T>> {
 	private static<T extends Comparable<? super T>> void quicksort(ArrayList<T> list, int low, int high) {
 		
 	}
+	/**
+	 * This method chooses a pivot to use in the quicksort method
+	 * @param choice - if choice is 1, the pivot point is the first element, if choice is 2, the pivot 
+	 * point is at the middle, if choice is 3, the pivot point is random.
+	 * if
+	 * @return
+	 */
+	private int choosePivot(int choice, int low, int high) {
+		if(choice < 1 || choice > 3)
+			throw new IllegalArgumentException("Choice must be a value of 1, 2, 3");
+		if(choice == 1)
+			return low;
+		if(choice == 2)
+			return high/2;
+		else {
+			Random rand = new Random();
+			return low + rand.nextInt(high - low + 1);
+		}
+		
+	}
 	public static ArrayList<Integer> generateAscending(int size) {
 		return new ArrayList<Integer>();
 	}
@@ -77,18 +99,5 @@ public class ArrayListSorter<T extends Comparable<? super T>> {
 
 	}
 
-	public static void main(String[] args) {
-		ArrayList<Integer> intList = new ArrayList<>();
-		intList.add(3);
-		intList.add(1);
-		intList.add(4);
-		intList.add(1);
-		intList.add(5);
-		intList.add(9);
-
-		ArrayListSorter.mergesort(intList);
-
-		System.out.println("Sorted list: " + intList);
-	}
 
 }
