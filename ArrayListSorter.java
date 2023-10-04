@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
-public class ArrayListSorter <T extends Comparable<? super T>>{
+public class ArrayListSorter {
     private static int insertionSortThreshold = 10;
 
     public static <T extends Comparable<? super T>> void mergesort(ArrayList<T> list) {
@@ -60,7 +60,12 @@ public class ArrayListSorter <T extends Comparable<? super T>>{
     }
 
     public static <T extends Comparable<? super T>> void quicksort(ArrayList<T> list) {
-        quicksort(list, 0, list.size() - 1);
+        if (list.get(0).compareTo(list.get(list.size() - 1)) < 0) {
+            // int partitionIndex = partition(list, 0, list.size() - 1);
+
+            // quicksort(list, 0, partitionIndex - 1);
+            // quicksort(list, partitionIndex + 1, list.size() - 1);
+        }
     }
 
     private static <T extends Comparable<? super T>> void quicksort(ArrayList<T> list, int low, int high) {
@@ -90,34 +95,7 @@ public class ArrayListSorter <T extends Comparable<? super T>>{
         }
 
     }
-    /**
-     * This method 
-     * @param list
-     * @param low
-     * @param high
-     * @param pivotChoice
-     * @return
-     */
-    private int partition(ArrayList<T> list, int low, int high, int pivotChoice) {
-    	int pivotIndex = choosePivot(pivotChoice, low, high);
-    	T pivot = list.get(pivotIndex);
-        list.set(pivotIndex, list.get(high));
-        list.set(high, pivot);
-        int i = low;
-        for (int j = low; j < high; j++) {
-            if (list.get(j).compareTo(pivot) < 0) {
-            	T temp = list.get(i);
-            	list.set(i, list.get(j));
-                list.set(j, temp);
-                i++;
-            }
-    }
-        T temp = list.get(i);
-        list.set(i, list.get(high));
-        list.set(high, temp);
-        return i;
-        
-    }
+
     public static ArrayList<Integer> generateAscending(int size) {
         ArrayList<Integer> ascendingList = new ArrayList<>();
 
