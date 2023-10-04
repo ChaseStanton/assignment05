@@ -68,9 +68,11 @@ public class ArrayListSorter {
         }
     }
 
-    private static <T extends Comparable<? super T>> void quicksort(ArrayList<T> list, int low, int high, int pivotChoice) {
-        if (low < 0 || low > list.size() || high < 0 || high > list.size() || low > high){
-            throw new IllegalArgumentException("Your low must be less than your high parameter and/or must be inside the range of your list");
+    private static <T extends Comparable<? super T>> void quicksort(ArrayList<T> list, int low, int high,
+            int pivotChoice) {
+        if (low < 0 || low > list.size() || high < 0 || high > list.size() || low > high) {
+            throw new IllegalArgumentException(
+                    "Your low must be less than your high parameter and/or must be inside the range of your list");
         }
         if (list.get(low).compareTo(list.get(high)) < 0) {
             int partitionIndex = partition(list, 0, list.size() - 1, pivotChoice);
@@ -97,18 +99,18 @@ public class ArrayListSorter {
             return low;
         if (choice == 2)
             return high / 2;
-        if (choice == 4){
+        if (choice == 4) {
             Random rand = new Random();
             return choosePivot(rand.nextInt(4), low, high);
-        }
-        else {
+        } else {
             Random rand = new Random();
             return low + rand.nextInt(high - low + 1);
         }
 
     }
 
-    private static <T extends Comparable<? super T>> int partition(ArrayList<T> list, int low, int high, int pivotChoice) {
+    private static <T extends Comparable<? super T>> int partition(ArrayList<T> list, int low, int high,
+            int pivotChoice) {
         int pivotIndex = choosePivot(pivotChoice, low, high);
         T pivot = list.get(pivotIndex);
         list.set(pivotIndex, list.get(high));
