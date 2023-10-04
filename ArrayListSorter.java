@@ -60,19 +60,19 @@ public class ArrayListSorter {
     }
 
     public static <T extends Comparable<? super T>> void quicksort(ArrayList<T> list) {
-         quicksort(list, 0, list.size() - 1, 2);
+         quicksort(list, 0, list.size() - 1);
         }
     
 
-    private static <T extends Comparable<? super T>> void quicksort(ArrayList<T> list, int low, int high, int pivotChoice) {
+    private static <T extends Comparable<? super T>> void quicksort(ArrayList<T> list, int low, int high) {
        // if (low < 0 || low > list.size() || high < 0 || high > list.size() || low > high){
           //  throw new IllegalArgumentException("Your low must be less than your high parameter and/or must be inside the range of your list");
       //  }
         if (low < high) {
-            int partitionIndex = partition(list, low, high, pivotChoice);
+            int partitionIndex = partitionRandom(list, low, high);
 
-            quicksort(list, low, partitionIndex - 1, pivotChoice);
-            quicksort(list, partitionIndex + 1, high, pivotChoice);
+            quicksort(list, low, partitionIndex - 1);
+            quicksort(list, partitionIndex + 1, high);
         }
     }
 
@@ -104,8 +104,8 @@ public class ArrayListSorter {
 
     }
 
-    private static <T extends Comparable<? super T>> int partition(ArrayList<T> list, int low, int high, int pivotChoice) {
-        int pivotIndex = choosePivot(pivotChoice, low, high);
+    private static <T extends Comparable<? super T>> int partitionRandom(ArrayList<T> list, int low, int high) {
+        int pivotIndex = choosePivot(3, low, high);
         T pivot = list.get(pivotIndex);
         list.set(pivotIndex, list.get(high));
         int i = low;
@@ -120,7 +120,42 @@ public class ArrayListSorter {
         list.set(high, list.get(i));
         list.set(i, pivot);
         return i;
+        
 
+    }
+    private static <T extends Comparable<? super T>> int partitionFirstElement(ArrayList<T> list, int low, int high) {
+        int pivotIndex = choosePivot(1, low, high);
+        T pivot = list.get(pivotIndex);
+        list.set(pivotIndex, list.get(high));
+        int i = low;
+        for (int j = low; j < high; j++) {
+            if (list.get(j).compareTo(pivot) < 0) {
+                T temp = list.get(i);
+                list.set(i, list.get(j));
+                list.set(j, temp);
+                i++;
+            }
+        }
+        list.set(high, list.get(i));
+        list.set(i, pivot);
+        return i;
+    }
+    private static <T extends Comparable<? super T>> int partitionMiddle(ArrayList<T> list, int low, int high) {
+        int pivotIndex = choosePivot(2, low, high);
+        T pivot = list.get(pivotIndex);
+        list.set(pivotIndex, list.get(high));
+        int i = low;
+        for (int j = low; j < high; j++) {
+            if (list.get(j).compareTo(pivot) < 0) {
+                T temp = list.get(i);
+                list.set(i, list.get(j));
+                list.set(j, temp);
+                i++;
+            }
+        }
+        list.set(high, list.get(i));
+        list.set(i, pivot);
+        return i;
     }
 
     public static ArrayList<Integer> generateAscending(int size) {
