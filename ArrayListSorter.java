@@ -79,7 +79,7 @@ public class ArrayListSorter {
      *               choice is 2, the pivot
      *               point is at the middle, if choice is 3, the pivot point is
      *               random.
-     *               if
+     *               
      * @return
      */
     private int choosePivot(int choice, int low, int high) {
