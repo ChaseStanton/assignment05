@@ -3,15 +3,34 @@ package assign05;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
-
+/**
+ * This class represents a sorter that sorts generic ArrayLists with merge sort or quick sort. This class also generates ArrayLists in 
+ * random, ascending, and descending order
+ * @author Chase Stanton and Reece Kalmar
+ * @version 10/4/2023
+ *
+ */
 public class ArrayListSorter {
     private static int insertionSortThreshold = 10;
 
+    /**
+     * This method sorts the ArrayList given in the parameter
+     * @param <T> - the type of the ArrayList
+     * @param list - the list of type T to be sorted
+     */
     public static <T extends Comparable<? super T>> void mergesort(ArrayList<T> list) {
         ArrayList<T> temp = new ArrayList<T>(list);
         mergesort(list, temp, 0, list.size() - 1);
     }
-
+    /**
+     * This method uses insertion sort if the list that needs to be sorted is smaller than the insertion sort threshold
+     * and recursively calls merge sort if not
+     * @param <T> - The type of the ArrayList
+     * @param list - the list to be sorted
+     * @param temp - a temporary ArrayList that is the same as the list
+     * @param left - the leftmost index of the list
+     * @param right - the rightmost index of the list
+     */
     private static <T extends Comparable<? super T>> void mergesort(ArrayList<T> list, ArrayList<T> temp, int left,
             int right) {
         if (left < right) {
@@ -27,7 +46,13 @@ public class ArrayListSorter {
         }
 
     }
-
+    /**
+     * This method sorts part of the list using an insertion sort.
+     * @param <T> - The type of ArrayList
+     * @param list - the list to be sorted
+     * @param left - the leftmost index that needs to be sorted
+     * @param right - the rightmost index that needs to be sorted
+     */
     private static <T extends Comparable<? super T>> void insertionSort(ArrayList<T> list, int left, int right) {
         for (int i = left + 1; i <= right; i++) {
             T current = list.get(i);
@@ -40,7 +65,15 @@ public class ArrayListSorter {
             list.set(before + 1, current);
         }
     }
-
+    /**
+     * This method compares the two lists and merges hem.
+     * @param <T> - The type of ArrayList
+     * @param list - the list to be sorted
+     * @param temp - the temporary ArrayList
+     * @param left - the leftmost index of the list
+     * @param mid - the middle of the list
+     * @param right - the rightmost index of the list
+     */
     private static <T extends Comparable<? super T>> void merge(ArrayList<T> list, ArrayList<T> temp, int left, int mid,
             int right) {
         int i = left;
@@ -58,12 +91,22 @@ public class ArrayListSorter {
             }
         }
     }
-
+    /**
+     * This method calls the private driver method of quicksort 
+     * @param <T> - The type of the ArrayList
+     * @param list - The ArrayList to be sorted
+     */
     public static <T extends Comparable<? super T>> void quicksort(ArrayList<T> list) {
          quicksort(list, 0, list.size() - 1);
         }
     
-
+    /**
+     * This method uses partition to swap elements of the list.
+     * @param <T> - The type of ArrayList
+     * @param list - The list to be sorted
+     * @param low - the lower index of the list
+     * @param high - the higher index of the list
+     */
     private static <T extends Comparable<? super T>> void quicksort(ArrayList<T> list, int low, int high) {
        // if (low < 0 || low > list.size() || high < 0 || high > list.size() || low > high){
           //  throw new IllegalArgumentException("Your low must be less than your high parameter and/or must be inside the range of your list");
@@ -84,7 +127,7 @@ public class ArrayListSorter {
      *               point is at the middle, if choice is 3, the pivot point is
      *               random.
      * 
-     * @return
+     * @return an int that is the pivot index to be used
      */
     private static int choosePivot(int choice, int low, int high) {
         if (choice < 1 || choice > 3)
@@ -103,7 +146,14 @@ public class ArrayListSorter {
         }
 
     }
-
+    /**
+     * T
+     * @param <T>
+     * @param list
+     * @param low
+     * @param high
+     * @return
+     */
     private static <T extends Comparable<? super T>> int partitionRandom(ArrayList<T> list, int low, int high) {
         int pivotIndex = choosePivot(3, low, high);
         T pivot = list.get(pivotIndex);
