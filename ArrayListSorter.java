@@ -11,7 +11,7 @@ import java.util.Random;
  *
  */
 public class ArrayListSorter {
-    private static int insertionSortThreshold = 10;
+    private static int insertionSortThreshold = 0;
 
     /**
      * This method sorts the ArrayList given in the parameter
@@ -112,7 +112,7 @@ public class ArrayListSorter {
           //  throw new IllegalArgumentException("Your low must be less than your high parameter and/or must be inside the range of your list");
       //  }
         if (low < high) {
-            int partitionIndex = partitionRandom(list, low, high);
+            int partitionIndex = partitionMiddle(list, low, high);
 
             quicksort(list, low, partitionIndex - 1);
             quicksort(list, partitionIndex + 1, high);
@@ -135,7 +135,7 @@ public class ArrayListSorter {
         if (choice == 1)
             return low;
         if (choice == 2)
-            return low + (high - low) / 2;
+            return  (high - low) / 2;
         if (choice == 4){
             Random rand = new Random();
             return choosePivot(rand.nextInt(3) + 1, low, high);

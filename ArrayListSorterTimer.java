@@ -1,6 +1,8 @@
 package assign05;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 
 public class ArrayListSorterTimer {
@@ -13,18 +15,18 @@ public class ArrayListSorterTimer {
 
         int timesToLoop = 1000;
         int initialListSize = 1; // Initial total number of small arrays in the list
-        int listLimit = 1001;
+        int listLimit = 10000;
 
         System.out.println("List Size\tAverage Time");
         startTime = System.nanoTime();
-        for (int listSize = initialListSize; listSize <= listLimit; listSize += 100) {
-
+        
+        ArrayList<Integer> permutedList = ArrayListSorter.generatePermuted(listLimit);
+        
+        for (int listSize = initialListSize; listSize <= listLimit; listSize += 500) {
             for (int run = 0; run < timesToLoop; run++) {
-                // Generate a list of small Integer[] arrays
-                ArrayList<Integer> list = new ArrayList<>();
-
+                // Create a sublist of the permuted list with the desired size
+                ArrayList<Integer> list = new ArrayList<>(permutedList.subList(0, listSize));
                 
-                    list = ArrayListSorter.generatePermuted(listSize); // Adjust the range as needed
                     
                 
                 
